@@ -9,6 +9,18 @@ const KEYS = {
 
 const isClient = () => typeof window !== 'undefined';
 
+// Safe JSON parser to protect against corrupted localStorage
+const safeJsonParse = (str, fallback) => {
+  if (!str) return fallback;
+  try {
+    const parsed = JSON.parse(str);
+    return parsed !== null && parsed !== undefined ? parsed : fallback;
+  } catch (e) {
+    console.error("Failed to parse JSON:", str, e);
+    return fallback;
+  }
+};
+
 // Mock reviews to seed initially
 const initialReviews = {
   "template_kru_math_m2": [
@@ -30,7 +42,7 @@ export const db = {
     
     const isSeeded = localStorage.getItem(KEYS.PRE_SEEDED);
     const storedGemsStr = localStorage.getItem(KEYS.GEMS);
-    const storedGems = storedGemsStr ? JSON.parse(storedGemsStr) : [];
+    const storedGems = safeJsonParse(storedGemsStr, []);
     
     // Auto-update seed if database is empty or template list grew
     if (!isSeeded || storedGems.length < marketplaceTemplates.length) {
@@ -50,7 +62,7 @@ export const db = {
       
       // Update reviews
       const storedReviewsStr = localStorage.getItem(KEYS.REVIEWS);
-      const storedReviews = storedReviewsStr ? JSON.parse(storedReviewsStr) : {};
+      const storedReviews = safeJsonParse(storedReviewsStr, {});
       Object.keys(initialReviews).forEach(key => {
         if (!storedReviews[key]) {
           storedReviews[key] = initialReviews[key];
@@ -76,7 +88,7 @@ export const db = {
   getUser: () => {
     if (!isClient()) return null;
     const userStr = localStorage.getItem(KEYS.USER);
-    return userStr ? JSON.parse(userStr) : null;
+    return safeJsonParse(userStr, null);
   },
 
   updateUser: (username, email) => {
@@ -95,7 +107,7 @@ export const db = {
   getGems: () => {
     if (!isClient()) return [];
     const gemsStr = localStorage.getItem(KEYS.GEMS);
-    return gemsStr ? JSON.parse(gemsStr) : [];
+    return safeJsonParse(gemsStr, []);
   },
 
   saveGem: (gem) => {
@@ -157,14 +169,14 @@ export const db = {
   getReviews: (gem_id) => {
     if (!isClient()) return [];
     const revStr = localStorage.getItem(KEYS.REVIEWS);
-    const allReviews = revStr ? JSON.parse(revStr) : {};
+    const allReviews = safeJsonParse(revStr, {});
     return allReviews[gem_id] || [];
   },
 
   addReview: (gem_id, review) => {
     if (!isClient()) return;
     const revStr = localStorage.getItem(KEYS.REVIEWS);
-    const allReviews = revStr ? JSON.parse(revStr) : {};
+    const allReviews = safeJsonParse(revStr, {});
     
     if (!allReviews[gem_id]) {
       allReviews[gem_id] = [];
