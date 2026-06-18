@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f5f0; /* Soft warm Japanese beige */
+  --foreground: #2d2d2d; /* Matte charcoal black */
+  
+  --card-bg: rgba(252, 251, 248, 0.92);
+  --card-border: rgba(210, 205, 190, 0.5);
+  --accent-vermilion: #c84b31; 
+  --accent-vermilion-hover: #d6563c;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-zen-bg: #f7f5f0;
+  --color-zen-panel: #f5f2eb;
+  --color-zen-panel-hover: #e9e4d9;
+  --color-zen-card: rgba(255, 254, 252, 0.93);
+  --color-zen-border: rgba(210, 205, 190, 0.55);
+  --color-zen-border-dark: #ded9ce;
+  --color-zen-charcoal: #2d2d2d;
+  --color-zen-charcoal-light: #5c5c58;
+  --color-zen-red: #c84b31;
+  --color-zen-red-hover: #d6563c;
+  --color-zen-indigo: #3e5066;
+  --color-zen-indigo-hover: #4e627c;
+}
+
+/* ==========================================
+   BULLETPROOF TAILWIND CLASS OVERRIDES 
+   (Forces Zen Light Theme immediately)
+   ========================================== */
+
+/* 1. Backgrounds & Panels */
+.bg-zinc-950 {
+  background-color: rgba(252, 251, 248, 0.93) !important;
+}
+
+/* Make main outer layout wrapper transparent to let background image show */
+div.min-h-screen.bg-zinc-950 {
+  background-color: transparent !important;
+}
+
+.bg-zinc-900 {
+  background-color: #f5f2eb !important;
+}
+.bg-zinc-900\/60 {
+  background-color: rgba(245, 242, 235, 0.65) !important;
+}
+.bg-zinc-900\/80 {
+  background-color: rgba(245, 242, 235, 0.85) !important;
+}
+.bg-zinc-900\/40 {
+  background-color: rgba(245, 242, 235, 0.45) !important;
+}
+.bg-zinc-900\/20 {
+  background-color: rgba(245, 242, 235, 0.2) !important;
+}
+.bg-zinc-900\/30 {
+  background-color: rgba(245, 242, 235, 0.3) !important;
+}
+.bg-zinc-950\/80 {
+  background-color: rgba(252, 251, 248, 0.88) !important;
+}
+
+.bg-zinc-800 {
+  background-color: #e4dfd5 !important;
+}
+.hover\:bg-zinc-800:hover {
+  background-color: #ded9ce !important;
+}
+
+/* 2. Text Color Overrides */
+.text-zinc-100, .text-zinc-200, .text-white {
+  color: #0c0c0c !important;
+}
+.text-zinc-300, .text-zinc-350 {
+  color: #1c1c1c !important;
+}
+.text-zinc-400, .text-zinc-450 {
+  color: #2d2d2b !important;
+}
+.text-zinc-500 {
+  color: #5c5c58 !important;
+}
+.text-zinc-650 {
+  color: #6c6c68 !important;
+}
+
+/* 3. Border Color Overrides */
+.border-zinc-800 {
+  border-color: #ded9ce !important;
+}
+.border-zinc-850 {
+  border-color: #e4dfd5 !important;
+}
+.border-zinc-900 {
+  border-color: #e8e3d8 !important;
+}
+
+/* 4. Indigo / Vermilion Accents */
+.bg-indigo-600 {
+  background-color: #c84b31 !important;
+  color: #ffffff !important;
+}
+.bg-indigo-600:hover {
+  background-color: #d6563c !important;
+}
+.bg-indigo-500\/10 {
+  background-color: rgba(200, 75, 49, 0.1) !important;
+}
+.border-indigo-500 {
+  border-color: #c84b31 !important;
+}
+.text-indigo-400, .text-indigo-300 {
+  color: #c84b31 !important;
+}
+.text-indigo-400\/80 {
+  color: rgba(200, 75, 49, 0.8) !important;
+}
+.hover\:text-indigo-300:hover {
+  color: #d6563c !important;
+}
+.hover\:border-indigo-500:hover {
+  border-color: #c84b31 !important;
+}
+
+/* Rose / Upvote Red */
+.bg-rose-950\/20 {
+  background-color: rgba(200, 75, 49, 0.08) !important;
+}
+.border-rose-800 {
+  border-color: rgba(200, 75, 49, 0.4) !important;
+}
+.text-rose-400 {
+  color: #c84b31 !important;
+}
+.text-zinc-500 .fill-rose-500 {
+  fill: #c84b31 !important;
+  color: #c84b31 !important;
+}
+
+/* Emerald / Green alerts */
+.bg-emerald-950\/20 {
+  background-color: rgba(95, 122, 97, 0.1) !important;
+}
+.border-emerald-800 {
+  border-color: rgba(95, 122, 97, 0.4) !important;
+}
+.text-emerald-400 {
+  color: #4b654c !important;
+}
+
+/* ==========================================
+   SCROLLBAR & BASIC LAYOUT 
+   ========================================== */
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(247, 245, 240, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 75, 49, 0.35);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 75, 49, 0.6);
+}
+
+body {
+  background-image: 
+    linear-gradient(rgba(247, 245, 240, 0.75), rgba(247, 245, 240, 0.95)), 
+    url('/japanese_zen_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: var(--foreground);
+  font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.glass-panel {
+  background: rgba(252, 251, 248, 0.9) !important;
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(210, 205, 190, 0.55);
+  box-shadow: 0 10px 40px 0 rgba(140, 130, 110, 0.08);
+}
+
+.glass-card {
+  background: rgba(254, 253, 251, 0.8) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(210, 205, 190, 0.4);
+  box-shadow: 0 4px 20px 0 rgba(140, 130, 110, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(200, 75, 49, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(200, 75, 49, 0.06);
+}
+
+/* Light code blocks */
+pre {
+  background: #fdfdfc !important;
+  border: 1px solid #e4dfd5;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  color: #3a3a38 !important;
+  box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.01);
+}
+
+code {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.9em;
+}
+
+::placeholder {
+  color: #8c8a82;
+  opacity: 0.55;
+}
+
+.glow-bg {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(200, 75, 49, 0.03) 0%, rgba(62, 80, 102, 0.01) 50%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
